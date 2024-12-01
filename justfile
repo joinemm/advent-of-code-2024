@@ -1,5 +1,4 @@
 test day:
-  zig test {{justfile_directory()}}/src/$(printf "%02d" {{day}}).zig 2>&1 | head
-
+  zig build test_$(printf "%02d" {{day}}) --summary all
 run day:
-  zig run {{justfile_directory()}}/src/$(printf "%02d" {{day}}).zig
+  zig build $(printf "%02d" {{day}})
