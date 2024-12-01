@@ -1,4 +1,15 @@
-test day:
-  zig build test_$(printf "%02d" {{day}}) --summary all
-run day:
-  zig build $(printf "%02d" {{day}})
+currentDay := shell("date '+%d'")
+
+[private]
+default:
+  just --list
+
+test day=currentDay:
+  zig build test_{{day}} --summary all
+
+run day=currentDay:
+  zig build {{day}}
+
+benchmark day=currentDay:
+  zig build install_{{day}} -Doptimize=ReleaseFast
+  hyperfine zig-out/bin/{{day}} -N --export-markdown README.md

@@ -13,6 +13,7 @@
         packages = with pkgs; [
           zig
           just
+          hyperfine
         ];
       };
     };
