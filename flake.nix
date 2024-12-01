@@ -10,7 +10,10 @@
     in
     {
       devShells.x86_64-linux.default = pkgs.mkShell {
-        packages = with pkgs; [ zig ];
+        packages = with pkgs; [
+          zig
+          just
+        ];
       };
     };
 }
