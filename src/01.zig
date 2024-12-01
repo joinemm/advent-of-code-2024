@@ -76,25 +76,25 @@ pub fn main() void {
     std.debug.print("Part 2: {any}\n", .{part_two(gpa.allocator(), puzzle_input)});
 }
 
-test "Part 1 sample" {
+test "part1.sample" {
     try std.testing.expectEqual(
         @as(u32, 11),
         part_one(std.testing.allocator, sample_input),
     );
 }
-test "Part 1 puzzle" {
+test "part1.puzzle" {
     try std.testing.expectEqual(
         @as(u32, 1319616),
         part_one(std.testing.allocator, puzzle_input),
     );
 }
-test "Part 2 sample" {
+test "part2.sample" {
     try std.testing.expectEqual(
         @as(u32, 31),
         part_two(std.testing.allocator, sample_input),
     );
 }
-test "Part 2 puzzle" {
+test "part2.puzzle" {
     try std.testing.expectEqual(
         @as(u32, 27267728),
         part_two(std.testing.allocator, puzzle_input),
