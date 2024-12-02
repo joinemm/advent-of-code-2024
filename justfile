@@ -12,4 +12,4 @@ run day=currentDay:
 
 benchmark day=currentDay:
   zig build install_{{day}} -Doptimize=ReleaseFast
-  hyperfine zig-out/bin/{{day}} -N --export-markdown README.md
+  hyperfine zig-out/bin/{{day}} -N
