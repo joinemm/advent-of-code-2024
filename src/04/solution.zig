@@ -1,7 +1,7 @@
 const std = @import("std");
 
-const puzzle_input = @embedFile("input/04.txt");
-const sample_input = @embedFile("sample/04.txt");
+const puzzle_input = @embedFile("input.txt");
+const sample_input = @embedFile("sample.txt");
 
 fn scan_direction(find: []const u8, items: [][]const u8, y: i32, x: i32, yd: i32, xd: i32) bool {
     var next: i32 = 0;
@@ -42,6 +42,7 @@ fn x_mas(items: [][]const u8, y: i32, x: i32) bool {
         (scan_direction("MAS", items, y - 2, x + 2, 1, -1) or scan_direction("MAS", items, y + 2, x - 2, -1, 1)));
 }
 
+// O(n)
 pub fn part_one(alloc: std.mem.Allocator, input: []const u8) !u32 {
     var total: u32 = 0;
 
@@ -66,6 +67,7 @@ pub fn part_one(alloc: std.mem.Allocator, input: []const u8) !u32 {
     return total;
 }
 
+// O(n)
 pub fn part_two(alloc: std.mem.Allocator, input: []const u8) !u32 {
     var total: u32 = 0;
 

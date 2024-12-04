@@ -1,7 +1,7 @@
 const std = @import("std");
 
-const puzzle_input = @embedFile("input/03.txt");
-const sample_input = @embedFile("sample/03.txt");
+const puzzle_input = @embedFile("input.txt");
+const sample_input = @embedFile("sample.txt");
 
 // Me: mom can we import a regex library?
 // Mom: no, we have regex at home

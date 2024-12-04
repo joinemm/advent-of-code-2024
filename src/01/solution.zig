@@ -1,7 +1,7 @@
 const std = @import("std");
 
-const puzzle_input = @embedFile("input/01.txt");
-const sample_input = @embedFile("sample/01.txt");
+const puzzle_input = @embedFile("input.txt");
+const sample_input = @embedFile("sample.txt");
 
 // O(n)
 pub fn part_one(alloc: std.mem.Allocator, input: []const u8) !u32 {

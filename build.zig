@@ -7,7 +7,7 @@ pub fn build(b: *std.Build) void {
     var day: usize = 1;
     while (day < 25) : (day += 1) {
         const dayString = b.fmt("{:0>2}", .{day});
-        const path = b.fmt("src/{s}.zig", .{dayString});
+        const path = b.fmt("src/{s}/solution.zig", .{dayString});
 
         const exe = b.addExecutable(.{
             .name = dayString,

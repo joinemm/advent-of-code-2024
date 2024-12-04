@@ -1,7 +1,7 @@
 const std = @import("std");
 
-const puzzle_input = @embedFile("input/02.txt");
-const sample_input = @embedFile("sample/02.txt");
+const puzzle_input = @embedFile("input.txt");
+const sample_input = @embedFile("sample.txt");
 
 fn detect_unsafe_level(digits: []const u8) !?i32 {
     var trend: i32 = 0;
