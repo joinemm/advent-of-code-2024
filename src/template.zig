@@ -17,8 +17,8 @@ pub fn part_two(alloc: std.mem.Allocator, input: []const u8) !u32 {
 
 pub fn main() void {
     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    std.debug.print("Part 1: {any}\n", .{part_one(gpa.allocator(), puzzle_input)});
-    std.debug.print("Part 2: {any}\n", .{part_two(gpa.allocator(), puzzle_input)});
+    std.debug.print("Part 1: {any}\n", .{part_one(gpa.allocator(), sample_input)});
+    // std.debug.print("Part 2: {any}\n", .{part_two(gpa.allocator(), puzzle_input)});
 }
 
 test "part1.sample" {
@@ -27,21 +27,21 @@ test "part1.sample" {
         part_one(std.testing.allocator, sample_input),
     );
 }
-test "part1.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 0),
-        part_one(std.testing.allocator, puzzle_input),
-    );
-}
-test "part2.sample" {
-    try std.testing.expectEqual(
-        @as(u32, 0),
-        part_two(std.testing.allocator, sample_input),
-    );
-}
-test "part2.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 0),
-        part_two(std.testing.allocator, puzzle_input),
-    );
-}
+// test "part1.puzzle" {
+//     try std.testing.expectEqual(
+//         @as(u32, 0),
+//         part_one(std.testing.allocator, puzzle_input),
+//     );
+// }
+// test "part2.sample" {
+//     try std.testing.expectEqual(
+//         @as(u32, 0),
+//         part_two(std.testing.allocator, sample_input),
+//     );
+// }
+// test "part2.puzzle" {
+//     try std.testing.expectEqual(
+//         @as(u32, 0),
+//         part_two(std.testing.allocator, puzzle_input),
+//     );
+// }
