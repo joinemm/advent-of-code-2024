@@ -14,6 +14,7 @@
           zig
           just
           hyperfine
+          poop
         ];
       };
     };
