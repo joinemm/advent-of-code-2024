@@ -12,13 +12,10 @@ const Context = struct {
 };
 
 pub fn descend(ctx: Context, i: usize, sum: u64) ?u64 {
-    if (sum > ctx.final) {
-        return null;
-    }
+    if (sum > ctx.final) return null;
+
     if (i >= ctx.nums.len) {
-        if (sum == ctx.final) {
-            return sum;
-        }
+        if (sum == ctx.final) return sum;
         return null;
     }
 
@@ -29,9 +26,7 @@ pub fn descend(ctx: Context, i: usize, sum: u64) ?u64 {
             Operator.concat => sum * std.math.pow(u64, 10, std.math.log10_int(ctx.nums[i]) + 1) + ctx.nums[i],
         };
 
-        if (descend(ctx, i + 1, next_sum)) |value| {
-            return value;
-        }
+        if (descend(ctx, i + 1, next_sum)) |value| return value;
     }
 
     return null;
@@ -50,7 +45,7 @@ pub fn solve(alloc: std.mem.Allocator, input: []const u8, with_ops: []const Oper
         while (elems.next()) |num| try collector.append(try std.fmt.parseInt(u64, num, 10));
         const nums = try collector.toOwnedSlice();
         defer alloc.free(nums);
-        const ctx = Context{ .nums = nums, .final = final, .operators = with_ops };
+        const ctx: Context = .{ .nums = nums, .final = final, .operators = with_ops };
 
         if (descend(ctx, 1, ctx.nums[0])) |value| result += value;
     }
