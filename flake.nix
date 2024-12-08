@@ -15,6 +15,7 @@
           just
           hyperfine
           poop
+          youplot
         ];
       };
     };

@@ -17,3 +17,6 @@ benchmark day=currentDay:
 observe day=currentDay:
   zig build install_{{day}} -Doptimize=ReleaseFast
   poop zig-out/bin/{{day}}
+
+graph:
+  ./graph.sh {{currentDay}}
