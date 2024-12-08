@@ -52,10 +52,12 @@ pub fn solve(alloc: std.mem.Allocator, input: []const u8, with_ops: []const Oper
     return result;
 }
 
+// O(n*2^m) where n = rows; m = amount of numbers within one row
 pub fn part_one(alloc: std.mem.Allocator, input: []const u8) !u64 {
     return try solve(alloc, input, &.{ Operator.add, Operator.multiply });
 }
 
+// O(n*3^m) where n = rows; m = amount of numbers within one row
 pub fn part_two(alloc: std.mem.Allocator, input: []const u8) !u64 {
     return try solve(alloc, input, &.{ Operator.add, Operator.multiply, Operator.concat });
 }

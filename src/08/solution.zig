@@ -18,6 +18,8 @@ pub fn vec_bounds(a: Vec2, x: i8, y: i8) bool {
 }
 
 pub fn solve(alloc: std.mem.Allocator, input: []const u8, harmonics: bool) !u32 {
+    // arena allocator makes it easy to release all memory allocated by
+    // the hashmap values (ArrayLists) without manually going through them
     var arena = std.heap.ArenaAllocator.init(alloc);
     defer arena.deinit();
 
@@ -28,8 +30,8 @@ pub fn solve(alloc: std.mem.Allocator, input: []const u8, harmonics: bool) !u32 
     }
 
     const map = try collector.toOwnedSlice();
-    var antinodes = std.AutoHashMap(Vec2, void).init(arena.allocator());
     var antennas = std.AutoArrayHashMap(u8, std.ArrayList(Vec2)).init(arena.allocator());
+    var antinodes = std.AutoHashMap(Vec2, void).init(arena.allocator());
 
     var y: i8 = 0;
     var x: i8 = 0;
@@ -48,6 +50,7 @@ pub fn solve(alloc: std.mem.Allocator, input: []const u8, harmonics: bool) !u32 
         x = 0;
     }
 
+    // O(n^2) where n = maximum number of antennae on the same frequency
     for (antennas.keys()) |key| {
         const towers = antennas.get(key).?.items;
         for (towers) |this| {
