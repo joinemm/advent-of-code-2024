@@ -1,3 +1,4 @@
-| Command | Mean [ms] | Min [ms] | Max [ms] | Relative |
+| Command | Mean [µs] | Min [µs] | Max [µs] | Relative |
 |:---|---:|---:|---:|---:|
-| `zig-out/bin/03` | 3.4 ± 0.5 | 2.9 | 6.2 | 1.00 |
+| `zig-out/bin/03_1` | 525.9 ± 76.0 | 447.3 | 1074.9 | 1.00 |
+| `zig-out/bin/03_2` | 3198.9 ± 521.1 | 2781.0 | 6234.3 | 6.08 ± 1.32 |
