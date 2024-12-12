@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo pipefail
+
 days="$(seq -w 01 "$1")"
 
 for i in $days; do

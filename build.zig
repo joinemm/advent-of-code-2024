@@ -4,17 +4,21 @@ pub fn build(b: *std.Build) void {
     const target = b.standardTargetOptions(.{});
     const mode = b.standardOptimizeOption(.{});
 
-    const wf = b.addWriteFiles();
     var day: usize = 1;
-    while (day < 11) : (day += 1) {
+    while (day <= 11) : (day += 1) {
+        const wf = b.addWriteFiles();
         const dayString = b.fmt("{:0>2}", .{day});
 
         const srcPath = b.fmt("src/{s}", .{dayString});
         _ = wf.addCopyDirectory(b.path(srcPath), "", .{});
 
+        const solution = b.addModule("solution", .{
+            .root_source_file = b.path(b.fmt("src/{s}/solution.zig", .{dayString})),
+        });
+
         const begin =
             \\ const std = @import("std");
-            \\ pub const solution = @import("solution.zig");
+            \\ pub const solution = @import("solution");
             \\ test { std.testing.refAllDecls(@This()); }
             \\ pub fn main() !void {
             \\     var gpa = std.heap.GeneralPurposeAllocator(.{}){};
@@ -35,6 +39,7 @@ pub fn build(b: *std.Build) void {
                 .target = target,
                 .optimize = mode,
             });
+            part_exe.root_module.addImport("solution", solution);
 
             // install step
             const install_cmd = b.addInstallArtifact(part_exe, .{});
@@ -71,9 +76,7 @@ pub fn build(b: *std.Build) void {
             .target = target,
             .optimize = mode,
         });
-        const solution = b.addModule("solution", .{
-            .root_source_file = b.path(b.fmt("src/{s}/solution.zig", .{dayString})),
-        });
+
         build_test.root_module.addImport("solution", solution);
         const run_test = b.addRunArtifact(build_test);
         const test_step = b.step(b.fmt("test_{s}", .{dayString}), "Run tests");
