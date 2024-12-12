@@ -1,7 +1,7 @@
 const std = @import("std");
 
-const puzzle_input = @embedFile("input.txt");
-const sample_input = @embedFile("sample.txt");
+pub const puzzle_input = @embedFile("input.txt");
+pub const sample_input = @embedFile("sample.txt");
 
 // Me: mom can we import a regex library?
 // Mom: no, we have regex at home
@@ -101,27 +101,5 @@ pub fn main() void {
     std.debug.print("Part 2: {any}\n", .{part_two(gpa.allocator(), puzzle_input)});
 }
 
-test "part1.sample" {
-    try std.testing.expectEqual(
-        @as(u32, 161),
-        part_one(std.testing.allocator, sample_input),
-    );
-}
-test "part1.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 182780583),
-        part_one(std.testing.allocator, puzzle_input),
-    );
-}
-test "part2.sample" {
-    try std.testing.expectEqual(
-        @as(u32, 48),
-        part_two(std.testing.allocator, sample_input),
-    );
-}
-test "part2.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 90772405),
-        part_two(std.testing.allocator, puzzle_input),
-    );
-}
+// imported by unit tests
+pub const answers: [4]u32 = .{ 161, 182780583, 48, 90772405 };

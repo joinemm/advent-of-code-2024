@@ -1,7 +1,7 @@
 const std = @import("std");
 
-const puzzle_input = @embedFile("input.txt");
-const sample_input = @embedFile("sample.txt");
+pub const puzzle_input = @embedFile("input.txt");
+pub const sample_input = @embedFile("sample.txt");
 
 const Parser = struct {
     rules: std.HashMap(u8, std.ArrayList(u8), std.hash_map.AutoContext(u8), 80),
@@ -117,27 +117,5 @@ pub fn main() void {
     std.debug.print("Part 2: {any}\n", .{part_two(gpa.allocator(), puzzle_input)});
 }
 
-test "part1.sample" {
-    try std.testing.expectEqual(
-        @as(u32, 143),
-        part_one(std.testing.allocator, sample_input),
-    );
-}
-test "part1.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 6951),
-        part_one(std.testing.allocator, puzzle_input),
-    );
-}
-test "part2.sample" {
-    try std.testing.expectEqual(
-        @as(u32, 123),
-        part_two(std.testing.allocator, sample_input),
-    );
-}
-test "part2.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 4121),
-        part_two(std.testing.allocator, puzzle_input),
-    );
-}
+// imported by unit tests
+pub const answers: [4]u32 = .{ 143, 6951, 123, 4121 };

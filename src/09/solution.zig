@@ -1,7 +1,7 @@
 const std = @import("std");
 
-const puzzle_input = @embedFile("input.txt");
-const sample_input = @embedFile("sample.txt");
+pub const puzzle_input = @embedFile("input.txt");
+pub const sample_input = @embedFile("sample.txt");
 
 pub fn part_one(alloc: std.mem.Allocator, input: []const u8) !usize {
     var checksum: usize = 0;
@@ -71,6 +71,7 @@ pub fn part_two(alloc: std.mem.Allocator, input: []const u8) !usize {
 
     var b: usize = filesystem.len - 1;
     var moved = std.AutoHashMap(usize, void).init(alloc);
+    defer moved.deinit();
     while (b > 0) {
         const blockid = filesystem[b];
         if (moved.get(blockid) != null) {
@@ -122,27 +123,5 @@ pub fn main() void {
     std.debug.print("Part 2: {any}\n", .{part_two(gpa.allocator(), puzzle_input)});
 }
 
-test "part1.sample" {
-    try std.testing.expectEqual(
-        @as(usize, 1928),
-        part_one(std.testing.allocator, sample_input),
-    );
-}
-test "part1.puzzle" {
-    try std.testing.expectEqual(
-        @as(usize, 6430446922192),
-        part_one(std.testing.allocator, puzzle_input),
-    );
-}
-test "part2.sample" {
-    try std.testing.expectEqual(
-        @as(usize, 2858),
-        part_two(std.testing.allocator, sample_input),
-    );
-}
-test "part2.puzzle" {
-    try std.testing.expectEqual(
-        @as(usize, 6460170593016),
-        part_two(std.testing.allocator, puzzle_input),
-    );
-}
+// imported by unit tests
+pub const answers: [4]usize = .{ 1928, 6430446922192, 2858, 6460170593016 };

@@ -1,7 +1,7 @@
 const std = @import("std");
 
-const puzzle_input = @embedFile("input.txt");
-const sample_input = @embedFile("sample.txt");
+pub const puzzle_input = @embedFile("input.txt");
+pub const sample_input = @embedFile("sample.txt");
 
 const Vec2 = [2]i8;
 
@@ -36,6 +36,7 @@ pub fn solve(alloc: std.mem.Allocator, input: []const u8, harmonics: bool) !u32 
     var y: i8 = 0;
     var x: i8 = 0;
     while (y < map.len) {
+        x = 0;
         while (x < map[@intCast(y)].len) : (x += 1) {
             const ch = map[@intCast(y)][@intCast(x)];
             if (ch != '.') {
@@ -47,7 +48,6 @@ pub fn solve(alloc: std.mem.Allocator, input: []const u8, harmonics: bool) !u32 
             }
         }
         y += 1;
-        x = 0;
     }
 
     // O(n^2) where n = maximum number of antennae on the same frequency
@@ -92,27 +92,5 @@ pub fn main() void {
     std.debug.print("Part 2: {any}\n", .{part_two(gpa.allocator(), puzzle_input)});
 }
 
-test "part1.sample" {
-    try std.testing.expectEqual(
-        @as(u32, 14),
-        part_one(std.testing.allocator, sample_input),
-    );
-}
-test "part1.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 371),
-        part_one(std.testing.allocator, puzzle_input),
-    );
-}
-test "part2.sample" {
-    try std.testing.expectEqual(
-        @as(u32, 34),
-        part_two(std.testing.allocator, sample_input),
-    );
-}
-test "part2.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 1229),
-        part_two(std.testing.allocator, puzzle_input),
-    );
-}
+// imported by unit tests
+pub const answers: [4]u32 = .{ 14, 371, 34, 1229 };

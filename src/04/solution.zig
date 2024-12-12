@@ -1,7 +1,7 @@
 const std = @import("std");
 
-const puzzle_input = @embedFile("input.txt");
-const sample_input = @embedFile("sample.txt");
+pub const puzzle_input = @embedFile("input.txt");
+pub const sample_input = @embedFile("sample.txt");
 
 fn scan_direction(find: []const u8, items: [][]const u8, y: i32, x: i32, yd: i32, xd: i32) bool {
     var next: i32 = 0;
@@ -99,27 +99,5 @@ pub fn main() void {
     std.debug.print("Part 2: {any}\n", .{part_two(gpa.allocator(), puzzle_input)});
 }
 
-test "part1.sample" {
-    try std.testing.expectEqual(
-        @as(u32, 18),
-        part_one(std.testing.allocator, sample_input),
-    );
-}
-test "part1.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 2406),
-        part_one(std.testing.allocator, puzzle_input),
-    );
-}
-test "part2.sample" {
-    try std.testing.expectEqual(
-        @as(u32, 9),
-        part_two(std.testing.allocator, sample_input),
-    );
-}
-test "part2.puzzle" {
-    try std.testing.expectEqual(
-        @as(u32, 1807),
-        part_two(std.testing.allocator, puzzle_input),
-    );
-}
+// imported by unit tests
+pub const answers: [4]u32 = .{ 18, 2406, 9, 1807 };
