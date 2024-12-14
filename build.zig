@@ -5,7 +5,7 @@ pub fn build(b: *std.Build) void {
     const mode = b.standardOptimizeOption(.{});
 
     var day: usize = 1;
-    while (day <= 11) : (day += 1) {
+    while (day <= 12) : (day += 1) {
         const wf = b.addWriteFiles();
         const dayString = b.fmt("{:0>2}", .{day});
 
